@@ -27,7 +27,7 @@ class MoviesAdapter(private val movies: List<Movie>, private val listener: OnLis
         holder.overviewTextView.text = movie.overview
 
         Glide.with(holder.posterImageView.context)
-            .load("https://image.tmdb.org/t/p/w500/${movie.posterPath}")
+            .load("https://image.tmdb.org/t/p/w500/${movie.poster_path}")
             .into(holder.posterImageView)
 
         // Set an OnClickListener on the itemView to invoke listener.onItemClick with the current movie

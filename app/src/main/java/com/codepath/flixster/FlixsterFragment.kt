@@ -1,5 +1,6 @@
 package com.codepath.flixster
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +26,14 @@ class FlixsterFragment : Fragment(), OnListFragmentInteractionListener {
         val view = inflater.inflate(R.layout.fragment_flixster, container, false)
         progressBar = view.findViewById(R.id.progressBar)
         recyclerView = view.findViewById(R.id.RecyclerViewMovies)
-        recyclerView.layoutManager = GridLayoutManager(context, 2)
+
+        val columns = if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            4 // More columns if landscape hope this works
+        } else {
+            2 // Fewer columns if portrait hope this works too
+        }
+        recyclerView.layoutManager = GridLayoutManager(context, columns)
+
         fetchMovies()
         return view
     }
@@ -54,3 +62,4 @@ class FlixsterFragment : Fragment(), OnListFragmentInteractionListener {
         Toast.makeText(context, "Clicked on: ${item.title}", Toast.LENGTH_SHORT).show()
     }
 }
+
